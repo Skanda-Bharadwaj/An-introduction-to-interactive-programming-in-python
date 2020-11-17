@@ -1,81 +1,68 @@
-# Mini-project #1 — Rock-paper-scissors-lizard-Spock
-# Skanda S Bharadwaj
-
-# Referecnce to game
-# 0 - rock
-# 1 - Spock
-# 2 - paper
-# 3 - lizard
-# 4 - scissors
-
-
-
 import random
-
-
-# Fuction to convert name to number
+import time
 def name_to_number(name):
-    if (name == "rock"):
-        return 0
-    elif (name == "paper"):
-        return 2
-    elif (name == "scissors"):
-        return 4
-    elif (name == "lizard"):
-        return 3
-    elif (name == "Spock"):
-        return 1
-    else :
-        return none
-    
+    if name == "rock":
+        number = 0
+    elif name == "spock":
+        number = 1
+    elif name == "paper":
+        number = 2
+    elif name == "lizard":
+        number = 3
+    else:
+        number = 4
+    return number
 
-# Fuction to convert number to name
+#assign number to given name
 def number_to_name(number):
-    if (number == 0):
-        return "rock"
-    elif (number == 2):
-        return "paper"
-    elif (number == 4):
-        return "scissors"
-    elif (number == 3):
-        return "lizard"
-    elif (number == 1):
-        return "Spock"
-    else :
-        return none
+    if number == 0:
+        name = "rock"
+    elif number == 1:
+        name = "spock"
+    elif number == 2:
+        name = "paper"
+    elif number == 3:
+        name = "lizard"
+    else:
+        name = "scissors"
+    return name
+def rpsls():
     
     
-# Function to implement the RPSLS game
-def rpsls(player_choice): 
+    print("battle started",end=" ")
+    for i in range(0,5):
+        print("->",end="")
+        time.sleep(.4)        
+    print("\nchoose your choice: [rock / spock / paper / lizard / scissors]")
+    player_choice=input("Enter your choice here:")
+    player=name_to_number(player_choice)
+    computer = random.randrange(0,5)
     
-    # Player's choice
-    print "Player chooses",player_choice
-    player_choice_number = name_to_number(player_choice)
+    print("you choose ",end="")
+    for i in range(0,5):
+        print(".",end=" ")
+        time.sleep(.3)
+    print(player_choice)
     
-    # Computer's choice
-    computer_choice_number = random.randrange(0,5)
-    computer_choice_name = number_to_name(computer_choice_number)
-    print "Computer chooses",computer_choice_name
-    
-    # Differnce between the two taken modulo 5
-    differnce_between_choices = (computer_choice_number - player_choice_number) % 5
-   
-    # Decide winner
-    if (differnce_between_choices == 0 ):
-        print "Player and computer tie!"
-    elif (differnce_between_choices <= 2 ):
-        print "Computer wins!"
-    else : 
-        print "Player wins!"
+    print("computer choose ",end="")
+    for i in range(0,5):
+        print(".",end=" ")
+        time.sleep(.3)
+    print(number_to_name(computer))
+    print("result is ",end="")
+    for i in range(0,5):
+        print(".",end=" ")
+        time.sleep(.5)
         
-    print
+        
+    sel=(player-computer)%5
+    
+    if sel==2 or sel==1:
+        print("congratulations: you won !!!")
+    elif sel==3 or sel==4:
+        print("sorry!! better luck next time : computer won")
+    else:
+        print("don't be upset ~~ : you tied with computer")
     
     
-# Test cases
-rpsls("rock")
-rpsls("Spock")
-rpsls("paper")
-rpsls("lizard")
-rpsls("scissors")
-
-#Cheers
+rpsls()  
